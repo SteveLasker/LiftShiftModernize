@@ -6,3 +6,9 @@ services:
     build:
       context: .\Web
       dockerfile: Dockerfile
+
+  api:
+    image: api
+    build:
+      context: ./Api
+      dockerfile: Dockerfile
