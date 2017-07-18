@@ -3,12 +3,13 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.0</ProjectVersion>
     <DockerTargetOS>Windows</DockerTargetOS>
-    <ProjectGuid>a2de3d6c-62d9-4d8e-967b-17b4c698f6d8</ProjectGuid>
+    <ProjectGuid>1c9dc887-e095-466d-8d8f-dd87e80effa6</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://{ServiceIPAddress}</DockerServiceUrl>
     <DockerServiceName>web</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="docker-compose.ci.build.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>

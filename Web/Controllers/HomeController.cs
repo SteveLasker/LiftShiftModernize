@@ -16,6 +16,11 @@ namespace Web.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            System.Text.StringBuilder envVars = new System.Text.StringBuilder();
+            foreach (System.Collections.DictionaryEntry de in Environment.GetEnvironmentVariables())
+                envVars.Append(string.Format("<strong>{0}</strong>:{1}<br \\>", de.Key, de.Value));
+
+            ViewBag.EnvironmentVariables = envVars.ToString();
 
             return View();
         }

@@ -17,3 +17,6 @@
 }
 <h2>Your Answer</h2>
 <p>@ViewData["Answer"]</p>
+<p>API_URL: @ViewData["API_URL"]</p>
+@if (ViewData["Exception"] != null)
+{ <p>Exception: @ViewData["Exception"]</p>}

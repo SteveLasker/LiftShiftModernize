@@ -16,8 +16,16 @@ namespace Web_UI.Controllers
         private string _doSomethingAPIUrl;
         public MagicBallController()
         {
-            _doSomethingBaseAddress = "http://api";
+            // Workaround until network discovery is complete in SF
+            // Would also be nice to have a way to know the container is running under SF to handle unique things like this
+            // embedding the port here as we can't yet use environment variables in .NET FX/IIS apps
+            _doSomethingBaseAddress = "http://" + (Environment.GetEnvironmentVariable("API_URL") ?? "api");
+            if (Environment.GetEnvironmentVariable("USERNAME") != "ContainerAdministrator")
+            {
+                _doSomethingBaseAddress += ":" + (Environment.GetEnvironmentVariable("API_PORT") ?? "8001"); 
+            }
             _doSomethingAPIUrl = "/Magic8BallApi";
+            ViewBag.API_URL = _doSomethingBaseAddress + _doSomethingAPIUrl;
         }
         // GET: /<controller>/
         public ActionResult Index()
@@ -35,9 +43,10 @@ namespace Web_UI.Controllers
 
                 response = client.SendAsync(request).Result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // eat the exception for now...
+                ViewBag.Exception = ex.ToString();
             }
 
             //

@@ -7,6 +7,7 @@ services:
   api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - API_URL="api"
     ports:
       - "80"
 networks:

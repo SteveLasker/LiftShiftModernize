@@ -6,9 +6,12 @@ services:
     build:
       context: .\Web
       dockerfile: Dockerfile
-
+    ports:
+      - "81:80"
   api:
     image: api
     build:
       context: ./Api
       dockerfile: Dockerfile
+    ports:
+      - "8001:80"
